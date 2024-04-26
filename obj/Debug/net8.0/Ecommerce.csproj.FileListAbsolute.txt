@@ -556,3 +556,4 @@ D:\Ba Nam\Own project\Practice\c#\Ecommerce\bin\Debug\net8.0\refs\WindowsBase.dl
 D:\Ba Nam\Own project\Practice\c#\Ecommerce\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 D:\Ba Nam\Own project\Practice\c#\Ecommerce\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 D:\Ba Nam\Own project\Practice\c#\Ecommerce\obj\Debug\net8.0\Ecommerce.MvcApplicationPartsAssemblyInfo.cs
+D:\Ba Nam\Own project\Practice\c#\Ecommerce\obj\Debug\net8.0\Ecommerce.sourcelink.json

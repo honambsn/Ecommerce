@@ -1,22 +1,27 @@
-﻿@model IEnumerable<Ecommerce.ViewModels.HangHoaVm>
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model IEnumerable<Ecommerce.ViewModels.HangHoaVm>
 @{
-    ViewData["Title"] = "Search";
-    Layout = "_DanhSachHangHoa";
 }
 
-<h1>Search</h1>
+
 <h3> <b>@Model.Count()</b> items</h3>
-@* 
 @foreach (var item in Model)
 {
     <div class="col-md-6 col-lg-6 col-xl-4">
         <div class="rounded position-relative fruite-item">
             <div class="fruite-img">
-                <img src="~/Hinh/HangHoa/@item.Hinh" class="img-fluid w-100 rounded-top" alt="@item.TenHH">
+                <a asp-action="Detail" asp-controller="HangHoa" asp-route-id="@item.MaHH">
+                    <img src="~/Hinh/HangHoa/@item.Hinh" class="img-fluid w-100 rounded-top" alt="@item.TenHH">
+                </a>
             </div>
             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">@item.TenLoai</div>
             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                <h4>@item.TenHH</h4>
+                <a asp-action="Detail" asp-controller="HangHoa" asp-route-id="@item.MaHH">
+                    <h4>@item.TenHH</h4>
+                </a>
                 <p>@item.MoTaNgan</p>
                 <div class="d-flex justify-content-between flex-lg-wrap">
                     <p class="text-dark fs-5 fw-bold mb-0">$ @item.DonGia / kg</p>
@@ -26,20 +31,3 @@
         </div>
     </div>
 }
-
-<div class="col-12">
-    <div class="pagination d-flex justify-content-center mt-5">
-        <a href="#" class="rounded">&laquo;</a>
-        <a href="#" class="active rounded">1</a>
-        <a href="#" class="rounded">2</a>
-        <a href="#" class="rounded">3</a>
-        <a href="#" class="rounded">4</a>
-        <a href="#" class="rounded">5</a>
-        <a href="#" class="rounded">6</a>
-        <a href="#" class="rounded">&raquo;</a>
-    </div>
-</div>
- *@
-
-
-@await Html.PartialAsync("ProductItem", Model)

@@ -557,3 +557,4 @@ D:\Ba Nam\Own project\Practice\c#\Ecommerce\bin\Debug\net8.0\Microsoft.AspNetCor
 D:\Ba Nam\Own project\Practice\c#\Ecommerce\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 D:\Ba Nam\Own project\Practice\c#\Ecommerce\obj\Debug\net8.0\Ecommerce.MvcApplicationPartsAssemblyInfo.cs
 D:\Ba Nam\Own project\Practice\c#\Ecommerce\obj\Debug\net8.0\Ecommerce.sourcelink.json
+D:\Ba Nam\Own project\Practice\c#\Ecommerce\bin\Debug\net8.0\AutoMapper.dll

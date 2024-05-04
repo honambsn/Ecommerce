@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "EYVyT1a+sXAaxADBJ3V5ZvZnAfAz/y5euemAxeVVpDB5KBIaO0XcRdfR0JjzfLPdYoGFobAIvbsIoYoShSgjAA==",
+  "dgSpecHash": "z3VZFgIKkSZlbcAYcWWGFuU3gRA0HjbjQGTCgmZxdIfQMeNv0MI4vk9MunTuWDV1VBTGJzQ7Y2NCqeUXYX1+QQ==",
   "success": true,
   "projectFilePath": "D:\\Ba Nam\\Own project\\Practice\\c#\\Ecommerce\\Ecommerce.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\honam\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\honam\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\honam\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\honam\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",

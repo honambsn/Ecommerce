@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FjKMcILwhqILFg5W9Tvm5Sg5/x4+VzN5LRkV1XB6LGc=",
+  "Hash": "d/fqhAiROwLR488iWQBgP74Kqe72ufdQmN76KqGGCQs=",
   "Source": "Ecommerce",
   "BasePath": "_content/Ecommerce",
   "Mode": "Default",
@@ -5221,25 +5221,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Hinh\\KhachHang\\Author.jpg"
-    },
-    {
-      "Identity": "D:\\Ba Nam\\Own project\\Practice\\c#\\Ecommerce\\wwwroot\\Hinh\\KhachHang\\logo (2).png",
-      "SourceId": "Ecommerce",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Ba Nam\\Own project\\Practice\\c#\\Ecommerce\\wwwroot\\",
-      "BasePath": "_content/Ecommerce",
-      "RelativePath": "Hinh/KhachHang/logo (2).png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Hinh\\KhachHang\\logo (2).png"
     },
     {
       "Identity": "D:\\Ba Nam\\Own project\\Practice\\c#\\Ecommerce\\wwwroot\\Hinh\\KhachHang\\man.jpg",

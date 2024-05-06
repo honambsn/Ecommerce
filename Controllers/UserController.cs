@@ -98,7 +98,7 @@ namespace Ecommerce.Controllers
                             {
                                 new Claim(ClaimTypes.Email, user.Email),
                                 new Claim(ClaimTypes.Name, user.HoTen),
-                                new Claim("CustomerId", user.MaKh),
+                                new Claim(MySetting.CLAIM_CUSTOMERID, user.MaKh),
 
                                 //claim - dynamic role
                                 new Claim(ClaimTypes.Role, "Customer")

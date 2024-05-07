@@ -8,10 +8,12 @@ namespace Ecommerce.Controllers
 {
     public class CartController : Controller
     {
-        private readonly ShopContext db;
+		private readonly PaypalClient _paypalClient;
+		private readonly ShopContext db;
 
-        public CartController(ShopContext context) 
+        public CartController(ShopContext context, PaypalClient paypalCient) 
         {
+            _paypalClient = paypalCient;
             db = context;
         }
 
@@ -74,6 +76,8 @@ namespace Ecommerce.Controllers
             {
                 return Redirect("/");
             }
+
+            ViewBag.PaypalClientId = _paypalClient.ClientId;
             return View(Cart);
         }
         
@@ -138,6 +142,52 @@ namespace Ecommerce.Controllers
             return View(Cart);
         }
 
+		[Authorize]
+		public IActionResult PaymentSuccess()
+		{
+			return View("Success");
+		}
 
-    }
+		#region Paypal payment
+		[Authorize]
+        [HttpPost("/Cart/create-paypal-order")]
+        public async Task<IActionResult> CreatePaypalOrder(CancellationToken cancellationToken)
+        {
+            var tongTien = Cart.Sum(p=> p.ThanhTien).ToString();
+            var currency = "USD";
+            var maDonHangThamChieu = "DH" + DateTime.Now.Ticks.ToString();
+
+            try
+            {
+                var response = await _paypalClient.CreateOrder(tongTien, currency, maDonHangThamChieu);
+
+                return Ok(response);
+
+            } catch (Exception ex) {
+                var error = new {ex.GetBaseException().Message};
+                return BadRequest(error);
+            }
+        }
+
+		[Authorize]
+		[HttpPost("/Cart/capture-paypal-order")]
+        public async Task<IActionResult> CapturePaypalOrder(string orderID, CancellationToken cancellationToken )
+        {
+            try
+            {
+                var response = await _paypalClient.CaptureOrder(orderID);
+
+                return Ok(response);
+            }catch (Exception ex) {
+				var error = new { ex.GetBaseException().Message };
+				return BadRequest(error);
+			}
+        }
+		#endregion
+
+
+
+
+
+	}
 }

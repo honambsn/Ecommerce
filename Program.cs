@@ -16,7 +16,7 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(600);
+    options.IdleTimeout = TimeSpan.FromMinutes(600);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -30,6 +30,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.AccessDeniedPath = "/AccessDenied";
 
 });
+
+
+builder.Services.AddSingleton(x => new PaypalClient(
+    builder.Configuration["PaypalOptions:AppId"],
+	builder.Configuration["PaypalOptions:AppSecret"],
+	builder.Configuration["PaypalOptions:Mode"]
+));
 
 var app = builder.Build();
 

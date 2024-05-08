@@ -1,5 +1,6 @@
 using Ecommerce.Data;
 using Ecommerce.Helpers;
+using Ecommerce.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,6 +38,8 @@ builder.Services.AddSingleton(x => new PaypalClient(
 	builder.Configuration["PaypalOptions:AppSecret"],
 	builder.Configuration["PaypalOptions:Mode"]
 ));
+
+builder.Services.AddSingleton<IVnPayService, VnPayService>();
 
 var app = builder.Build();
 

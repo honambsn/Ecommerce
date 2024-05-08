@@ -3,6 +3,7 @@ using Ecommerce.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Ecommerce.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using Ecommerce.Services;
 
 namespace Ecommerce.Controllers
 {
@@ -10,11 +11,13 @@ namespace Ecommerce.Controllers
     {
 		private readonly PaypalClient _paypalClient;
 		private readonly ShopContext db;
+		private readonly IVnPayService _vnPayService;
 
-        public CartController(ShopContext context, PaypalClient paypalCient) 
+		public CartController(ShopContext context, PaypalClient paypalCient, IVnPayService vnPayService) 
         {
             _paypalClient = paypalCient;
             db = context;
+            _vnPayService = vnPayService;
         }
 
         
@@ -80,12 +83,24 @@ namespace Ecommerce.Controllers
             ViewBag.PaypalClientId = _paypalClient.ClientId;
             return View(Cart);
         }
-        
+        [Authorize]
         [HttpPost]
-        public IActionResult CheckOut(CheckoutVM model) 
+        public IActionResult CheckOut(CheckoutVM model, string payment ="COD") 
         {
             if (ModelState.IsValid)
             {
+                if (payment == "Thanh toán VNPay")
+                {
+                    var vnPayModel = new VnPaymentRequestModel
+                    {
+                        Amount = Cart.Sum(p => p.ThanhTien),
+                        CreatedDate = DateTime.Now,
+                        Description = $"{model.HoTen} {model.DienThoai}",
+                        FullName = model.HoTen,
+                        OrderId = new Random().Next(1000, 100000),
+                    };
+                    return Redirect(_vnPayService.CreatePaymentUrl(HttpContext, vnPayModel));
+                }
                 var customerID = HttpContext.User.Claims.SingleOrDefault(p => p.Type == MySetting.CLAIM_CUSTOMERID).Value;
 
                 var customer = new KhachHang();
@@ -186,8 +201,28 @@ namespace Ecommerce.Controllers
 		#endregion
 
 
+		[Authorize]
+        public IActionResult PaymentFail()
+        {
+            return View();
+        }
 
+		[Authorize]
+        public IActionResult PaymentCallBack()
+        {
+            var response = _vnPayService.PaymentExecute(Request.Query);
 
+            if (response == null || response.VnPayResponseCode != "00")
+            {
+                TempData["Message"] = $"payment error: {response.VnPayResponseCode}";
+                return RedirectToAction("PaymentFail");
+            }
 
+            //save order to db
+
+			TempData["Message"] = $"payment succes";
+            return RedirectToAction("PaymentSuccess");
+
+		}
 	}
 }
